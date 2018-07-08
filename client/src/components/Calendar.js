@@ -1,12 +1,58 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+
+
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  ListGroup,
+  ListGroupItem
+} from 'reactstrap';
+
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
 import uuid from 'uuid';
 
 class Calendar extends Component {
   state = {
-    items: [
-      { id: uuid(), name: 'todo' },
+
+    month: [
+      { id: uuid(), day:1, appointment:[]},
+      { id: uuid(), day:2, appointment:[]},
+      { id: uuid(), day:3, appointment:[]},
+      { id: uuid(), day:4, appointment:[]},
+      { id: uuid(), day:5, appointment:[]},
+      { id: uuid(), day:6, appointment:[]},
+      { id: uuid(), day:7, appointment:[]},
+      { id: uuid(), day:8, appointment:[]},
+      { id: uuid(), day:9, appointment:[]},
+      { id: uuid(), day:10, appointment:[]},
+      { id: uuid(), day:11, appointment:[]},
+      { id: uuid(), day:12, appointment:[]},
+      { id: uuid(), day:13, appointment:[]},
+      { id: uuid(), day:14, appointment:[]},
+      { id: uuid(), day:15, appointment:[]},
+      { id: uuid(), day:16, appointment:[]},
+      { id: uuid(), day:17, appointment:[]},
+      { id: uuid(), day:18, appointment:[]},
+      { id: uuid(), day:19, appointment:[]},
+      { id: uuid(), day:20, appointment:[]},
+      { id: uuid(), day:21, appointment:[]},
+      { id: uuid(), day:22, appointment:[]},
+      { id: uuid(), day:23, appointment:[]},
+      { id: uuid(), day:24, appointment:[]},
+      { id: uuid(), day:25, appointment:[]},
+      { id: uuid(), day:26, appointment:[]},
+      { id: uuid(), day:27, appointment:[]},
+      { id: uuid(), day:28, appointment:[]},
+      { id: uuid(), day:29, appointment:[]},
+      { id: uuid(), day:30, appointment:[]},
+      { id: uuid(), day:31, appointment:[]},
+      { id: uuid(), day:1, appointment:[]}
 
     ]
   }
@@ -64,32 +110,11 @@ class Calendar extends Component {
             }}
           >
             {day.day} <span class="appointment">Add Appointment</span>
-
-
-
-
-
-
           </Button>
 
+
 {/*
-        <ListGroup>
-          <TransitionGroup className="shopping-list">
-            if(month.appointment != null){
-              <CSSTransition key={day} timeout={500} classNames="fade">
-                <ListGroupItem>
-                  <Button
-                    className="remove-btn"
-                    color="danger"
-                    size="sm"
-                  >
-                    {month.appointment}
-                  </Button>
-                </ListGroupItem>
-              </CSSTransition>
-            }
-          </TransitionGroup>
-        </ListGroup>
+
 */}
 
    
@@ -99,7 +124,7 @@ class Calendar extends Component {
 
 
     })
-        return <div class="grid"><div class="month">January</div>
+      return <div class="grid"><div class="month"><b>January 2018</b></div>
       <div class="grid">
         <div class="title">Sunday</div>
         <div class="title">Monday</div>

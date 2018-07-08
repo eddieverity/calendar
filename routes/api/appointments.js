@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 
 // Item Model
-const Item = require('../../models/Item');
+const Appointment = require('../../models/Appointment');
 
 // @route   GET api/items
 // @desc    Get All Items
 // @access  Public
 
 router.get('/', (req, res) => {
-  Item.find()
+  Appointment.find()
     .sort({ date: -1 })
     .then(items => res.json(items))
 });
@@ -19,11 +19,13 @@ router.get('/', (req, res) => {
 // @access  Public
 
 router.post('/', (req, res) => {
-  const newItem = new Item({
-    name: req.body.name
+  const newAppointment = new Appointment({
+    title: req.body.title,
+    date: req.body.date,
+    description: req.body.description
   });
-  newItem.save()
-    .then(item => res.json(item));
+  newAppointment.save()
+    .then(appointment => res.json(appointment));
 });
 
 // @route   DELETE api/items/:id
@@ -32,8 +34,8 @@ router.post('/', (req, res) => {
 
 router
   .delete('/:id', (req, res) => {
-    Item.findById(req.params.id)
-      .then(item => item.remove().then(() => res.json({success: true})))
+    Appointment.findById(req.params.id)
+      .then(appointment => appointment.remove().then(() => res.json({success: true})))
       .catch(err => res.status(404).json({success: false}));  
   });
 
