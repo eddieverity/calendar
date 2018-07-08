@@ -39,6 +39,13 @@
   
 }
 
+.appointmentDisplay {
+  margin-top:1%;
+  font-size:.1em;
+  background-color:pink;
+  text-align:center;
+}
+
 .grid {
   display:block;
   width:750px;
