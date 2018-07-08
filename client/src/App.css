@@ -27,6 +27,17 @@
   border: 3px solid gray;
 }
 
+.title {
+  display:inline;
+  padding:19px;
+  width:100px;
+  height:50px;
+}
+.month {
+  display:block;
+  text-align:center;
+}
+
 .grid {
   display:block;
   width:750px;

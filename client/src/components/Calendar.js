@@ -99,7 +99,17 @@ class Calendar extends Component {
 
 
     })
-    return <div class="grid">{ buttons }</div>
+        return <div class="grid"><div class="month">January</div>
+      <div class="grid">
+        <div class="title">Sunday</div>
+        <div class="title">Monday</div>
+        <div class="title">Tuesday</div>
+        <div class="title">Wednesday</div>
+        <div class="title">Thursday</div>
+        <div class="title">Friday</div>
+        <div class="title">Saturday</div>
+      </div>
+      { buttons }</div>
 
   }
 }
