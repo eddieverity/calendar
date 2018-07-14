@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-
+import dateFns from "date-fns";
 import {
   Button,
   Modal,
@@ -19,8 +19,38 @@ import uuid from 'uuid';
 
 class Calendar extends Component {
 
+
+
+
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal
+    });
+  };
+
+  onChange = (e) => {
+    this.setState({  [e.target.name]: e.target.value })
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+
+    const newItem = {
+      id: uuid(),
+      name: this.state.name
+    }
+
+    // Add item via addItem action
+    this.props.addItem(newItem);
+
+    // Close Modal
+    this.toggle();
+  }
+
 // Set up state for hardcoded test variables until user login with class-month schema enabled
   state = {
+    currentDay: new Date(),
+    modal: false,
     month: [
       { id: uuid(), day:1, appointment:[{title:"zxcv", description:"", time:""}]},
       { id: uuid(), day:2, appointment:[{title:"second", description:"baseball", time:"2-4"}]},
@@ -57,14 +87,21 @@ class Calendar extends Component {
     ]
   }
 
+
+
   render() {
     // sets month to this.state for page manipulation later when appts added/deleted
     const { month } = this.state;
-    console.log(month)
+    console.log(dateFns.format(this.state.currentDay, "D"))
     // iterates over month object to display days/add button/pending appointments
     var buttons = month.map(function(day){
       return <div class="square">           
         {day.day}
+
+
+
+      {/* logic for only display 'add appointment' button if date > current day*/ }
+        {/* {{day.day} >= dateFns.format(this.state.currentDay, "D") && */ }
         <Button
           color="light"
           size="sm"
@@ -77,17 +114,63 @@ class Calendar extends Component {
               }));
             }
           }}
+
         >
         <span class="appointment">Add Appointment</span>
-        </Button>   
-        <div class="appointmentDisplay">{ day.appointment[0].title }{" "}{day.appointment[0].description}{" "}{day.appointment[0].time}</div>
+        </Button>
+        
+      
+
+
+        <div class="appointmentDisplay">
+          { day.appointment[0].title }
+          {" "}
+          {day.appointment[0].description}
+          {" "}
+          {day.appointment[0].time}
+        </div>
 {/*
+
+      <div>
+        <Button
+          color="dark"
+          onClick={this.toggle}
+        >Add Appointment
+        </Button>
+
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+        >
+          <ModalHeader toggle={this.toggle}>Add To Appointments</ModalHeader>
+            <ModalBody>
+              <Form onSubmit={this.onSubmit}>
+                <FormGroup>
+                  <Label for="item">Item</Label>
+                  <Input 
+                    type="text"
+                    name="name"
+                    id="item"
+                    placeholder="Add shopping item"
+                    onChange={this.onChange}
+                  />
+                  <Button
+                    color="dark"
+                    style={{marginTop: '2rem'}}
+                    block
+                  >Add Appointment</Button>
+                </FormGroup>
+              </Form>
+            </ModalBody>
+        </Modal>
+      </div>
+
 
 */}   
       </div>;
     })
-
-    return <div class="grid"><div class="month"><b>January 2018</b></div>
+    const dateFormat = "MMMM YYYY";
+    return <div class="grid"><div class="month"><b>{dateFns.format(this.state.currentDay, dateFormat)}</b></div>
       <div class="grid">
         <div class="title">Sunday</div>
         <div class="title">Monday</div>
