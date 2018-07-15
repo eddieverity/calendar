@@ -23,7 +23,25 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-
+  appointments: [
+    {
+      day: {
+        type: Number,
+        
+      },
+      description: {
+        type:String
+      },
+      StartTime: {
+        type:String,
+        
+      },
+      EndTime: {
+        type:String,
+        
+      }
+    }
+  ]
   
   
 });

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import dateFns from "date-fns";
 import {
   Button,
@@ -13,9 +12,12 @@ import {
   ListGroup,
   ListGroupItem
 } from 'reactstrap';
-
+import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
 import uuid from 'uuid';
+
 
 class Calendar extends Component {
 
@@ -83,7 +85,7 @@ class Calendar extends Component {
       { id: uuid(), day:29, appointment:[{title:"second", description:"baseball", time:"2-4"}]},
       { id: uuid(), day:30, appointment:[{title:"second", description:"baseball", time:"2-4"}]},
       { id: uuid(), day:31, appointment:[{title:"second", description:"baseball", time:"2-4"}]},
-      { id: uuid(), day:1, appointment:[{title:"second", description:"baseball", time:"2-4"}]}
+      
     ]
   }
 
@@ -94,8 +96,8 @@ class Calendar extends Component {
     const { month } = this.state;
     console.log(dateFns.format(this.state.currentDay, "D"))
     // iterates over month object to display days/add button/pending appointments
-    var buttons = month.map(function(day){
-      return <div class="square">           
+    const buttons = month.map(function(day){
+      return <div key={day.day.toString()} className="square">           
         {day.day}
 
 
@@ -116,13 +118,13 @@ class Calendar extends Component {
           }}
 
         >
-        <span class="appointment">Add Appointment</span>
+        <span className="appointment">Add Appointment</span>
         </Button>
         
       
 
 
-        <div class="appointmentDisplay">
+        <div className="appointmentDisplay">
           { day.appointment[0].title }
           {" "}
           {day.appointment[0].description}
@@ -170,19 +172,29 @@ class Calendar extends Component {
       </div>;
     })
     const dateFormat = "MMMM YYYY";
-    return <div class="grid"><div class="month"><b>{dateFns.format(this.state.currentDay, dateFormat)}</b></div>
-      <div class="grid">
-        <div class="title">Sunday</div>
-        <div class="title">Monday</div>
-        <div class="title">Tuesday</div>
-        <div class="title">Wednesday</div>
-        <div class="title">Thursday</div>
-        <div class="title">Friday</div>
-        <div class="title">Saturday</div>
+    return <div className="grid"><div className="month"><b>{dateFns.format(this.state.currentDay, dateFormat)}</b></div>
+      <div className="grid">
+        <div className="title">Sunday</div>
+        <div className="title">Monday</div>
+        <div className="title">Tuesday</div>
+        <div className="title">Wednesday</div>
+        <div className="title">Thursday</div>
+        <div className="title">Friday</div>
+        <div className="title">Saturday</div>
       </div>
       { buttons }</div>
 
   }
 }
 
-export default Calendar;
+Calendar.propTypes = {
+  auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(Calendar);
+
+
