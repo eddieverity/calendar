@@ -82,9 +82,11 @@ class Calendar extends Component {
               </Link></div>
               
             }
+            {/* 
             // TODO: Loop through appointments & display
             // for each display, have 'edit' icon that routes to /appointment/edit/:id
             // for each display, have 'delete' icon that routes to /appointment/delete/:id
+            */}
           </td>
         ))   
 
