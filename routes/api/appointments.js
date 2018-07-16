@@ -1,18 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// Item Model
-const Appointment = require('../../models/Appointment');
+const User = require('../../models/User');
 
-// @route   GET api/items
-// @desc    Get All Items
-// @access  Public
 
-router.get('/', (req, res) => {
-  Appointment.find()
-    .sort({ date: -1 })
-    .then(items => res.json(items))
-});
 
 // @route   POST api/items
 // @desc    Create an Item

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Calendar from './components/Calendar';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
@@ -54,15 +54,8 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
-             
-              
-
-            </div>
-              
-              <Calendar />
-              <Footer />
-            
-            
+            </div>             
+            <Footer />           
           </div>
         </Router>
       </Provider>

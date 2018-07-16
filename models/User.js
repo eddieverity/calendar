@@ -26,19 +26,19 @@ const UserSchema = new Schema({
   appointments: [
     {
       day: {
-        type: Number,
-        
+        type: Number,  
+      },
+      title: {
+        type: Number,  
       },
       description: {
         type:String
       },
-      StartTime: {
-        type:String,
-        
+      from: {
+        type:String, 
       },
-      EndTime: {
+      to: {
         type:String,
-        
       }
     }
   ]

@@ -2,6 +2,8 @@ img {
   width: 100%;
 }
 
+
+
 .landing {
   position: relative;
   background: url('./img/showcase.jpg') no-repeat;
@@ -61,11 +63,16 @@ img {
   transition: opacity 1000ms ease-in;
 }
 
-.square {
-  display:inline-block;
+.square1 {
+
+
   height:100px;
   width:100px;
-  border: 3px solid gray;
+  
+}
+
+.today {
+  background-color:blue;
 }
 
 .title {

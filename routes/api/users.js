@@ -13,10 +13,6 @@ const validateLoginInput = require('../../validation/login');
 // Load User model
 const User = require('../../models/User');
 
-// @route   GET api/users/test
-// @desc    tests users route
-// @access  Public 
-router.get('/test', (req, res) => res.json({msg: "Users Works"}));
 
 // @route   POST api/users/register
 // @desc    Register user
@@ -66,15 +62,12 @@ router.post('/register', (req, res) => {
 // @access  Public
 router.post('/login', (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
-
   // Check Validation
   if(!isValid) {
     return res.status(400).json(errors);
   }
-
   const email = req.body.email;
   const password = req.body.password;
-
   // Find user by email
   User.findOne({email: email})
     .then(user => {
@@ -83,19 +76,17 @@ router.post('/login', (req, res) => {
         errors.email = 'User not found';
         return res.status(404).json(errors);
       }
-
       // Check passwd
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if(isMatch) {
             // User Matched
-
             const payload = {
               id: user.id,
               name: user.name,
-              avatar: user.avatar
+              avatar: user.avatar,
+              appointments: user.appointments
             } // Create jwt payload
-
             // Sign Token
             jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
               res.json({
@@ -111,15 +102,13 @@ router.post('/login', (req, res) => {
     });
 });
 
-// @route   GET api/users/current
-// @desc    Return current user
-// @access  Public
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email
-  });
+
+// @route   DELETE api/users
+// @desc    Delete user
+// @access  Private
+router.delete('/', passport.authenticate('jwt', { session: false}), (req, res) => { 
+  User.findOneAndRemove({ _id: req.user.ud })
+    .then(() => res.json({ success: true }));
 });
 
 
