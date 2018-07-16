@@ -4,7 +4,7 @@ import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addEducation } from '../../actions/profileActions';
+import { addAppointment } from '../../actions/profileActions';
 
 
 class AddAppointment extends Component {
@@ -36,7 +36,7 @@ class AddAppointment extends Component {
       title: this.state.title,
       description: this.state.description,
       from: this.state.from,
-      to: this.state.to,
+      to: this.state.to
     };
 
     this.props.addAppointment(apptData, this.props.history);

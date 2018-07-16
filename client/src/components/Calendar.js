@@ -23,7 +23,7 @@ class Calendar extends Component {
         week1.map(day => (
           <td key={day} className = "square1">
             {day}
-            { day === today && 'Today'}
+            { day === today && ' Today'}
             { day >= today && 
 
               <div><Link to="/create-appointment" className="btn btn-sm btn-info">
@@ -36,7 +36,7 @@ class Calendar extends Component {
         week2.map(day => (
           <td key={day} className = "square1">
             {day}
-            { day === today && 'Today'}
+            { day === today && ' Today'}
             { day >= today && 
               <div><Link to="/create-appointment" className="btn btn-sm btn-info">
                 +
@@ -48,8 +48,10 @@ class Calendar extends Component {
         week3.map(day => (
           <td key={day} className = "square1">
             {day}
-            { day === today && 'Today'}
+            { day === today && ' Today'}
             { day >= today && 
+             
+
               <div><Link to="/create-appointment" className="btn btn-sm btn-info">
                 +
               </Link></div>
@@ -60,7 +62,7 @@ class Calendar extends Component {
         week4.map(day => (
           <td key={day} className = "square1">
             {day}
-            { day === today && 'Today'}
+            { day === today && ' Today'}
             { day >= today && 
               <div><Link to="/create-appointment" className="btn btn-sm btn-info">
                 +
@@ -73,12 +75,16 @@ class Calendar extends Component {
         week5.map(day => (
           <td key={day} className = "square1">
             {day}
-            { day === today && 'Today'}
+            { day === today && ' Today'}
             { day >= today && 
               <div><Link to="/create-appointment" className="btn btn-sm btn-info">
-                +
+                + 
               </Link></div>
+              
             }
+            // TODO: Loop through appointments & display
+            // for each display, have 'edit' icon that routes to /appointment/edit/:id
+            // for each display, have 'delete' icon that routes to /appointment/delete/:id
           </td>
         ))   
 

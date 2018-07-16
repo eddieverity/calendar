@@ -5,14 +5,18 @@ const User = require('../../models/User');
 
 
 
+
+
+
 // @route   POST api/items
 // @desc    Create an Item
 // @access  Public
-
-router.post('/', (req, res) => {
+router.post('/appointment', (req, res) => {
   const newAppointment = new Appointment({
     title: req.body.title,
     date: req.body.date,
+    from: req.body.from,
+    to: req.body.to
     description: req.body.description
   });
   newAppointment.save()
@@ -24,7 +28,7 @@ router.post('/', (req, res) => {
 // @access  Public
 
 router
-  .delete('/:id', (req, res) => {
+  .delete('/appointment/:id', (req, res) => {
     Appointment.findById(req.params.id)
       .then(appointment => appointment.remove().then(() => res.json({success: true})))
       .catch(err => res.status(404).json({success: false}));  
